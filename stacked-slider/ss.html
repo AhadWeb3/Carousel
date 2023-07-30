@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testimonial Carousel</title>
+  <style>
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .carousel {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      height: 400px; /* Adjust the height as needed */
+    }
+    .carousel .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: none;
+    }
+    .carousel .slide.active {
+      display: block;
+    }
+    .carousel .slide img {
+      width: 82px;
+      height: 82px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .carousel .slide .testimonial {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      margin: 20px;
+      padding: 30px;
+      border-radius: 10px;
+      background-color: #f9faff;
+      box-shadow: 0 4px 40px 0 rgba(26, 44, 106, 0.16);
+      text-align: center;
+    }
+    .carousel .slide .testimonial p {
+      max-width: 400px;
+      margin: 0 auto;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .carousel .slide .testimonial .client-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .carousel .slide .testimonial .client-info h3 {
+      margin: 0;
+      font-size: 19px;
+      color: #000b33;
+    }
+    .carousel .slide .testimonial .client-info p {
+      margin: 0;
+      font-size: 16px;
+      color: hsla(240, 100%, 10%, 0.7);
+    }
+    .carousel .buttons {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 28px;
+      color: rgba(255, 255, 255, 0.7);
+      background-color: rgba(0, 0, 0, 0.46);
+      border: 2px solid rgba(255, 255, 255, 0.7);
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      text-align: center;
+      line-height: 35px;
+      text-decoration: none;
+      z-index: 100;
+      opacity: 0.7;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+    .carousel .buttons:hover {
+      opacity: 1;
+    }
+    .carousel .prev {
+      left: 10px;
+    }
+    .carousel .next {
+      right: 10px;
+    }
+    .carousel .stacked-testimonials {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      opacity: 0.7;
+    }
+    .carousel .stacked-testimonials .testimonial-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.46);
+      cursor: pointer;
+    }
+    .carousel .stacked-testimonials .testimonial-thumb.active {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="carousel">
+      <div class="slide active">
+        <div class="testimonial">
+          <img src="https://uploads-ssl.webflow.com/6484acfb5324ef534b71f3fb/64889bb78bdd6398a1163cb4_quote.png" alt="" />
+          <p>
+            Let me be honest, RUTH is not for the faint at heart… she is
+            ruthless in her quest to help you achieve, thrive and not just
+            survive. If this is what you need she is the best at it.
+          </p>
+          <div class="client-info">
+            <img src="https://uploads-ssl.webflow.com/6484acfb5324ef534b71f3fb/64b09d1840e8b121c6b192f6_LaShawda-Bryant.jpeg" alt="" />
+            <div>
+              <h3>LaShawnda Bryant</h3>
+              <p>State Farm</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide">
+        <div class="testimonial">
+          <img src="https://uploads-ssl.webflow.com/6484acfb5324ef534b71f3fb/64889bb78bdd6398a1163cb4_quote.png" alt="" />
+          <p>
+            It is easier to motivate ourselves, keep going in hard times,
+            and even to speak out to inspire others when we have a sense
+            that our goals mean something. Ruth’s wisdom is what we need to
+            take charge of our lives. We’d be lost without her!
+          </p>
+          <div class="client-info">
+            <img src="https://uploads-ssl.webflow.com/6484acfb5324ef534b71f3fb/64b09e03bfa43fcb05917b54_Mark-Burnett.jpeg" alt="" />
+            <div>
+              <h3>Mark Burnett</h3>
+              <p>Project Manager, ICT Telecom</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide">
+        <div class="testimonial">
+          <img src="https://uploads-ssl.webflow.com/6484acfb5324ef534b71f3fb/64889bb78bdd6398a1163cb4_quote.png" alt="" />
+          <p>
+            It is easier to motivate ourselves, keep going in hard times,
+            and even to speak out to inspire others when we have a sense
+            that our goals mean something. Ruth’s wisdom is what we need to
+            take charge of our lives. We’d be lost without her!
+          </p>
+          <div class="client-info">
+            <img src="https://uploads-ssl.webflow.com/6484acfb5324ef534b71f3fb/64b09e03bfa43fcb05917b54_Mark-Burnett.jpeg" alt="" />
+            <div>
+              <h3>Mark Burnett</h3>
+              <p>Project Manager, ICT Telecom</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide">
+        <div class="testimonial">
+          <img src="https://uploads-ssl.webflow.com/6484acfb5324ef534b71f3fb/64889bb78bdd6398a1163cb4_quote.png" alt="" />
+          <p>
+            It is easier to motivate ourselves, keep going in hard times,
+            and even to speak out to inspire others when we have a sense
+            that our goals mean something. Ruth’s wisdom is what we need to
+            take charge of our lives. We’d be lost without her!
+          </p>
+          <div class="client-info">
+            <img src="https://uploads-ssl.webflow.com/6484acfb5324ef534b71f3fb/64b09e03bfa43fcb05917b54_Mark-Burnett.jpeg" alt="" />
+            <div>
+              <h3>Mark Burnett</h3>
+              <p>Project Manager, ICT Telecom</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Add more slides here -->
+    </div>
+    <div class="stacked-testimonials">
+      <div class="testimonial-thumb active"></div>
+      <div class="testimonial-thumb"></div>
+      <!-- Add more testimonial thumbs here -->
+    </div>
+    <a class="buttons prev" href="#">&lt;</a>
+    <a class="buttons next" href="#">&gt;</a>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      var $carousel = $(".carousel");
+      var $slides = $carousel.find(".slide");
+      var $testimonials = $carousel.find(".testimonial");
+      var totalSlides = $slides.length;
+      var currentSlide = 0;
+
+      function showSlide(index) {
+        $slides.removeClass("active");
+        $slides.eq(index).addClass("active");
+        updateTestimonialThumbs(index);
+      }
+
+      function updateTestimonialThumbs(index) {
+        $(".testimonial-thumb").removeClass("active");
+        $(".testimonial-thumb").eq(index).addClass("active");
+      }
+
+      function nextSlide() {
+        currentSlide++;
+        if (currentSlide >= totalSlides) {
+          currentSlide = 0;
+        }
+        showSlide(currentSlide);
+      }
+
+      function prevSlide() {
+        currentSlide--;
+        if (currentSlide < 0) {
+          currentSlide = totalSlides - 1;
+        }
+        showSlide(currentSlide);
+      }
+
+      function jumpToSlide(index) {
+        showSlide(index);
+        clearInterval(slideInterval);
+      }
+
+      $(".next").click(nextSlide);
+      $(".prev").click(prevSlide);
+
+      // Add click event to testimonial thumbs
+      $(".testimonial-thumb").click(function () {
+        var index = $(this).index();
+        jumpToSlide(index);
+      });
+
+      // Auto slide interval
+      var slideInterval = setInterval(nextSlide, 5000);
+    });
+  </script>
+</body>
+</html>

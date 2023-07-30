@@ -1,0 +1,27 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    background: #000;
+    max-width: 100%;
+}
+.container{
+    background-color: antiquewhite;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
+    overflow: hidden;
+}
+.group{
+    gap: 10px;
+    background-color: aqua;
+    border: red 4px solid;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+}
+.element{
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+}
