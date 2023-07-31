@@ -1,0 +1,180 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slider</title>
+    <style>
+      .slider-holder > div.active {
+        opacity: 1; /* Set opacity to 1 for the active slide */
+        z-index: 1; /* Increase z-index for the active slide to display above others */
+      }
+      .slider-holder > div.next {
+        opacity: 0.5; /* Reduce opacity for the next slide */
+        z-index: 0;
+        transform: scale(0.95); /* Slightly reduce size for the next slide */
+      }
+      .container {
+        margin: auto;
+        max-width: 600px;
+        height: 300px;
+        position: relative;
+      }
+      .slider-holder {
+        /* display: flex; */
+        transition: transform 500ms ease; /* Add a 2-second transition for smooth sliding */
+      }
+      .slider-holder > div {
+        border-radius: 30px;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 60px;
+        font-weight: 600;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        transition: transform 500ms ease, opacity 500ms ease;
+      }
+      .con1 {
+        background-color: red;
+      }
+      .con2 {
+        background-color: pink;
+      }
+      .con3 {
+        background-color: blanchedalmond;
+      }
+      .con4 {
+        background-color: blue;
+      }
+      .con5 {
+        background-color: blueviolet;
+      }
+      .con6 {
+        background-color: yellowgreen;
+      }
+      .slider-holder > div:nth-child(1) {
+        z-index: 5;
+        opacity: 1;
+      }
+
+      .slider-holder > div:nth-child(2) {
+        z-index: 4;
+        transform: scale(0.97);
+        top: 15px;
+        opacity: 1;
+      }
+
+      .slider-holder > div:nth-child(3) {
+        z-index: 3;
+        transform: scale(0.94);
+        top: 30px;
+        opacity: 1;
+      }
+
+      .slider-holder > div:nth-child(4) {
+        z-index: 2;
+        transform: scale(0.91);
+        top: 45px;
+        opacity: 0;
+      }
+
+      .slider-holder > div:nth-child(5) {
+        z-index: 1;
+        transform: scale(0.88);
+        top: 60px;
+        /* left: -300px; */
+        opacity: 0%;
+      }
+      .slider-holder > div:nth-child(6) {
+        z-index: 0;
+        transform: scale(0.86);
+        top: 75px;
+        /* left: -300px; */
+        opacity: 0%;
+      }
+      .right,
+      .left {
+        font-size: 30px;
+        width: 45px;
+        height: 45px;
+        z-index: 100;
+        top: calc(50% - 23.5px);
+        cursor: pointer;
+        position: absolute;
+        border-radius: 100%;
+      }
+      .right {
+        left: auto;
+        right: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <button class="right">></button>
+      <button class="left"><</button>
+      <div class="slider-holder">
+        <div class="con1 active">1</div>
+        <div class="con2">2</div>
+        <div class="con3">3</div>
+        <div class="con4">4</div>
+        <div class="con5">5</div>
+        <div class="con6">6</div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        let isAnimating = false;
+        let animationQueue = [];
+
+        function processAnimationQueue() {
+          if (isAnimating || animationQueue.length === 0) return;
+          isAnimating = true;
+
+          const nextAnimation = animationQueue.shift();
+          nextAnimation();
+        }
+
+        $(".right").click(function () {
+          animationQueue.push(function () {
+            let firstChild = $(".slider-holder > div:first-child");
+            firstChild.animate({ left: "-=300px" }, 500, function () {
+              firstChild.css({ left: "0" }).appendTo(".slider-holder");
+              $(".slider-holder > div").removeClass("active next");
+              $(".slider-holder > div:nth-child(2)").addClass("next");
+              $(".slider-holder > div:nth-child(3)").addClass("active");
+              isAnimating = false;
+              processAnimationQueue();
+            });
+          });
+
+          processAnimationQueue();
+        });
+
+        $(".left").click(function () {
+          animationQueue.push(function () {
+            let lastChild = $(".slider-holder > div:last-child");
+            lastChild
+              .prependTo(".slider-holder")
+              .css({ left: "-300px" })
+              .animate({ left: "0" }, 500, function () {
+                $(".slider-holder > div").removeClass("active next");
+                $(".slider-holder > div:nth-child(1)").addClass("active");
+                $(".slider-holder > div:nth-child(2)").addClass("next");
+                isAnimating = false;
+                processAnimationQueue();
+              });
+          });
+
+          processAnimationQueue();
+        });
+      });
+
+    </script>
+
+  </body>
+</html>

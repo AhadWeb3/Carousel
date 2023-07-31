@@ -1,501 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <style>
-      .test-container {
-        width: 100%;
-      }
-      .test-container .carrd-stack {
-        width: 636px;
-        height: 337px;
-        position: absolute;
-        margin: 20px auto;
-      }
-      .test-container .carrd-stack .buttons {
-        display: none;
-        position: absolute;
-        background: rgba(0, 0, 0, 0.46);
-        border: 2px solid rgba(255, 255, 255, 0.7);
-        border-radius: 50%;
-        width: 35px;
-        height: 35px;
-        left: 0;
-        top: 55%;
-        color: rgba(255, 255, 255, 0.7);
-        text-align: center;
-        line-height: 35px;
-        text-decoration: none;
-        font-size: 22px;
-        z-index: 100;
-        outline: none;
-        transition: all 0.2s ease;
-      }
-      .test-container .carrd-stack .buttons:hover {
-        transform: scale(1.3, 1.3);
-      }
-      .test-container .carrd-stack .prev {
-        left: 15px;
-        right: auto;
-      }
-      .test-container .carrd-stack .next {
-        left: auto;
-        right: 15px;
-      }
-      .test-container .carrd-stack .carousel .buttons:hover {
-        color: #c01313;
-        background: #fff;
-      }
-      .test-container .carrd-stack .carrd-list li {
-        transition: all 100ms ease-in-out;
-        position: absolute;
-        left: 0;
-        right: 0;
-        margin: 0 auto;
-      }
-      .test-container .carrd-stack .carrd-list li:nth-child(1) {
-        height: 337px;
-        top: 10px;
-        width: 96%;
-        /* animation: scaleCard 100ms; */
-      }
-      .test-container .carrd-stack .carrd-list li:nth-child(2) {
-        height: 337px;
-        top: 15px;
-        width: 97%;
-      }
-      .test-container .carrd-stack .carrd-list li:nth-child(3) {
-        height: 337px;
-        top: 20px;
-        width: 98%;
-      }
-      .test-container .carrd-stack .carrd-list li:nth-child(4) {
-        height: 337px;
-        top: 25px;
-        width: 99%;
-      }
-      .test-container .carrd-stack .carrd-list li:nth-child(5) {
-        height: 337px;
-        top: 30px;
-        width: 100%;
-      }
-      .test-container .carrd-stack:hover > .buttons.prev {
-        display: block;
-        animation: bounceInLeft 200ms;
-      }
-      .test-container .carrd-stack:hover > .buttons.next {
-        display: block;
-        animation: bounceInRight 200ms;
-      }
-      .transformThis {
-        animation: scaleDown 500ms;
-      }
-      .transformPrev {
-        animation: scaleUp 100ms;
-        display: none;
-      }
-      @keyframes scaleUp {
-        0% {
-          transform: scale(1.2) translateY(30px);
-          opacity: 0;
-        }
-        20% {
-          transform: scale(1.15) translateY(25px);
-          opacity: 0.1;
-        }
-        40% {
-          transform: scale(1.1) translateY(20px);
-          opacity: 0.2;
-        }
-        60% {
-          transform: scale(1.05) translateY(15px);
-          opacity: 0.4;
-        }
-        80% {
-          transform: scale(1.01) translateY(10px);
-          opacity: 0.8;
-        }
-        100% {
-          transform: scale(1) translateY(0);
-          opacity: 1;
-        }
-      }
-      @keyframes scaleDown {
-        0% {
-          transform: scale(1) translateY(0);
-          opacity: 1;
-        }
-        20% {
-          transform: scale(1.01) translateY(10px);
-          opacity: 0.8;
-        }
-        40% {
-          transform: scale(1.05) translateY(15px);
-          opacity: 0.4;
-        }
-        60% {
-          transform: scale(1.1) translateY(20px);
-          opacity: 0.2;
-        }
-        80% {
-          transform: scale(1.15) translateY(25px);
-          opacity: 0.1;
-        }
-        100% {
-          transform: scale(1.2) translateY(30px);
-          opacity: 0;
-        }
-      }
-      @keyframes scaleCard {
-        0% {
-          top: 5px;
-        }
-        100% {
-          top: 24px;
-        }
-      }
-      @keyframes bounceInLeft {
-        0% {
-          opacity: 0;
-          transform: translateX(40px);
-        }
-        100% {
-          transform: translateX(0);
-        }
-      }
-      @keyframes bounceInRight {
-        0% {
-          opacity: 0;
-          transform: translateX(-40px);
-        }
-        100% {
-          transform: translateX(0);
-        }
-      }
-      .test-testimonial {
-        position: relative;
-        margin-right: auto;
-        margin-left: auto;
-        padding-top: 3.75rem;
-        padding-right: 3.75rem;
-        padding-bottom: 3.75rem;
-        padding-left: 3.75rem;
-        border-top-left-radius: 0.625rem;
-        border-top-right-radius: 0.625rem;
-        border-bottom-left-radius: 0.625rem;
-        border-bottom-right-radius: 0.625rem;
-        box-shadow: 0 4px 40px 0 rgba(26, 44, 106, 0.16);
-        background-color: #f9faff;
-      }
-      .test-para {
-        max-width: 48ch;
-        margin-bottom: 2.75rem;
-        display: -webkit-box;
-        max-width: 400px;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-      .test-quote {
-        position: absolute;
-        left: auto;
-        top: auto;
-        right: 36px;
-        bottom: 27px;
-      }
-      .test-client {
-        display: flex;
-        align-items: center;
-        grid-column-gap: 13px;
-        grid-row-gap: 13px;
-      }
-      .test-heading {
-        margin-top: 0px;
-        margin-bottom: 0px;
-        color: #000b33;
-        font-size: 19px;
-        line-height: 26px;
-      }
-      .test-position {
-        color: hsla(240, 100%, 10%, 0.7);
-        font-size: 16px;
-        line-height: 26px;
-      }
-      .test-img {
-        width: 82px;
-        height: 82px;
-        border-top-left-radius: 50%;
-        border-top-right-radius: 50%;
-        border-bottom-left-radius: 50%;
-        border-bottom-right-radius: 50%;
-        object-fit: cover;
-      }
-      .test-img-wrap {
-        padding-top: 4px;
-        padding-right: 4px;
-        padding-bottom: 4px;
-        padding-left: 4px;
-        border-top-left-radius: 1000px;
-        border-top-right-radius: 1000px;
-        border-bottom-left-radius: 1000px;
-        border-bottom-right-radius: 1000px;
-        /* background-color: @swatch_d99c88bb; */
-      }
-    </style>
-  </head>
-  <body>
-    <div class="test-container">
-      <div class="carrd-stack">
-        <a class="buttons prev" href="#"></a>
-        <ul class="carrd-list">
-          <li class="carrd">
-            <div class="test-testimonial">
-              <img
-                src="https://uploads-ssl.webflow.com/6484acfb5324ef534b71f3fb/64889bb78bdd6398a1163cb4_quote.png"
-                class="test-quote"
-                alt=""
-              />
-              <p class="test-para">
-                Let me be honest, RUTH is not for the faint at heart… she is
-                ruthless in her quest to help you achieve, thrive and not just
-                survive. If this is what you need she is the best at it.
-              </p>
-              <div class="test-client">
-                <img
-                  class="test-img"
-                  src="https://uploads-ssl.webflow.com/6484acfb5324ef534b71f3fb/64b09d1840e8b121c6b192f6_LaShawda-Bryant.jpeg"
-                  alt=""
-                />
-                <div>
-                  <h3 class="test-heading">LaShawnda Bryant</h3>
-                  <p class="test-position">State Farm</p>
-                </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testimonial Slider</title>
+  <style>
+    .testimonial {
+      position: relative;
+      max-width: 636px;
+      margin: auto;
+      padding: 3.75rem;
+      border-radius: 0.625rem;
+      box-shadow: 0 4px 40px 0 rgba(26, 44, 106, 0.16);
+      background-color: #f9faff;
+    }
+    .test-para {
+      max-width: 48ch;
+      margin-bottom: 2.75rem;
+    }
+    .test-quote {
+      position: absolute;
+      right: 36px;
+      bottom: 27px;
+    }
+    .test-client img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+    }
+    .test-heading {
+      margin: 0;
+      color: #000b33;
+      font-size: 19px;
+      line-height: 26px;
+    }
+    .test-position {
+      margin: 0;
+      color: hsla(240, 100%, 10%, 0.7);
+      font-size: 16px;
+      line-height: 26px;
+    }
+    .container {
+      max-width: 636px;
+      margin: auto;
+      overflow: hidden;
+    }
+    .card-stack {
+      display: flex;
+      transition: transform 500ms ease;
+    }
+    .card-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+    }
+    .carrd {
+      flex: 0 0 100%;
+    }
+    .active {
+      z-index: 1;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card-stack">
+      <ul class="card-list">
+        <li class="carrd active">
+          <div class="testimonial">
+            <img src="https://uploads-ssl.webflow.com/6484acfb5324ef534b71f3fb/64889bb78bdd6398a1163cb4_quote.png" class="test-quote" alt="">
+            <p class="test-para">
+              Let me be honest, RUTH is not for the faint at heart… she is
+              ruthless in her quest to help you achieve, thrive and not just
+              survive. If this is what you need she is the best at it.
+            </p>
+            <div class="test-client">
+              <img class="test-img" src="https://uploads-ssl.webflow.com/6484acfb5324ef534b71f3fb/64b09d1840e8b121c6b192f6_LaShawda-Bryant.jpeg" alt="">
+              <div>
+                <h3 class="test-heading">LaShawnda Bryant</h3>
+                <p class="test-position">State Farm</p>
               </div>
             </div>
-          </li>
-          <li class="carrd">
-            <div class="test-testimonial">
-              <img
-                src="https://uploads-ssl.webflow.com/6484acfb5324ef534b71f3fb/64889bb78bdd6398a1163cb4_quote.png"
-                class="test-quote"
-                alt=""
-              />
-              <p class="test-para">
-                It is easier to motivate ourselves, keep going in hard times,
-                and even to speak out to inspire others when we have a sense
-                that our goals mean something. Ruth’s wisdom is what we need to
-                take charge of our lives. We’d be lost without her!
-              </p>
-              <div class="test-client">
-                <img
-                  class="test-img"
-                  src="https://uploads-ssl.webflow.com/6484acfb5324ef534b71f3fb/64b09e03bfa43fcb05917b54_Mark-Burnett.jpeg"
-                  alt=""
-                />
-                <div>
-                  <h3 class="test-heading">Mark Burnett</h3>
-                  <p class="test-position">Project Manager, ICT Telecom</p>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="carrd">
-            <div class="test-testimonial">
-              <img
-                src="https://uploads-ssl.webflow.com/6484acfb5324ef534b71f3fb/64889bb78bdd6398a1163cb4_quote.png"
-                class="test-quote"
-                alt=""
-              />
-              <p class="test-para">
-                Ruth is the best coach I could have ever asked for, so I
-                consider myself lucky to have found her. All sessions we had
-                were eye-openers, intriguing and life changing. After every
-                session, I was looking forward to our next session.
-              </p>
-
-              <div class="test-client">
-                <img
-                  class="test-img"
-                  src="https://uploads-ssl.webflow.com/6484acfb5324ef534b71f3fb/64b09e0147182da9cb1a9a99_Ozge-.jpeg"
-                  alt=""
-                />
-                <div>
-                  <h3 class="test-heading">Ozge Ayen Caner</h3>
-                  <p class="test-position">Senior Paralegal, BCI</p>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="carrd">
-            <div class="test-testimonial">
-              <img
-                src="https://uploads-ssl.webflow.com/6484acfb5324ef534b71f3fb/64889bb78bdd6398a1163cb4_quote.png"
-                class="test-quote"
-                alt=""
-              />
-              <p class="test-para">
-                In addition to being an uplifting experience that heightens my
-                emotions, I’m also able to take the concepts we learn together
-                in a session and use them immediately in work and home settings.
-                I highly recommend this experience.
-              </p>
-              <div class="test-client">
-                <img
-                  class="test-img"
-                  src="https://uploads-ssl.webflow.com/6484acfb5324ef534b71f3fb/64b09e0140e8b121c6b27363_Sax-headshot.png"
-                  alt=""
-                />
-                <div>
-                  <h3 class="test-heading">Scott Sax</h3>
-                  <p class="test-position">
-                    Management Consultant, Think Systems
-                  </p>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="carrd">
-            <div class="test-testimonial">
-              <img
-                src="https://uploads-ssl.webflow.com/6484acfb5324ef534b71f3fb/64889bb78bdd6398a1163cb4_quote.png"
-                class="test-quote"
-                alt=""
-              />
-              <p class="test-para">
-                I am better able to leverage my strengths from learning in this
-                supportive environment with the incredible team of coaches!
-              </p>
-              <div class="test-client">
-                <img
-                  class="test-img"
-                  src="https://uploads-ssl.webflow.com/6484acfb5324ef534b71f3fb/64b09e0271277766e0a19ac2_Picture-Asila.jpg"
-                  alt=""
-                />
-                <div>
-                  <h3 class="test-heading">Asila Calhoun</h3>
-                  <p class="test-position">
-                    Leadership Coach & Principal, Calhoun Consulting
-                  </p>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="carrd">
-            <div class="test-testimonial">
-              <img
-                src="https://uploads-ssl.webflow.com/6484acfb5324ef534b71f3fb/64889bb78bdd6398a1163cb4_quote.png"
-                class="test-quote"
-                alt=""
-              />
-              <p class="test-para">
-                Ruth’s experience and her diverse background enable her to offer
-                a unique perspective. She has continually challenged me to think
-                outside the box, by holding me accountable to explore different
-                thought pathways. She is able to adapt and tailor her approach
-                based upon the individual she is working with and I truly
-                appreciate her insight and candor. Ruth is an excellent coach
-                and I highly recommend her!
-              </p>
-              <div class="test-client">
-                <img
-                  class="test-img"
-                  src="https://uploads-ssl.webflow.com/6484acfb5324ef534b71f3fb/64b09e0120c91d8818f65609_Paul-Marrandino.jpeg"
-                  alt=""
-                />
-                <div>
-                  <h3 class="test-heading">Paul Marrandino</h3>
-                  <p class="test-position">
-                    Recruiting Manager - Cloud, Google
-                  </p>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="carrd">
-            <div class="test-testimonial">
-              <img
-                src="https://uploads-ssl.webflow.com/6484acfb5324ef534b71f3fb/64889bb78bdd6398a1163cb4_quote.png"
-                class="test-quote"
-                alt=""
-              />
-              <p class="test-para">
-                Ruth’s experience and her diverse background enable her to offer
-                a unique perspective. She has continually challenged me to think
-                outside the box, by holding me accountable to explore different
-                thought pathways. She is able to adapt and tailor her approach
-                based upon the individual she is working with and I truly
-                appreciate her insight and candor. Ruth is an excellent coach
-                and I highly recommend her!
-              </p>
-              <div class="test-client">
-                <div class="test-img-wrap">
-                  <img
-                    class="test-img"
-                    src="https://uploads-ssl.webflow.com/6484acfb5324ef534b71f3fb/64b09e01a696bee9e7b32cf6_Mark-Pekala.jpg"
-                    alt=""
-                  />
-                </div>
-                <div>
-                  <h3 class="test-heading">Mark Pekala</h3>
-                  <p class="test-position">Vice President, Broadridge</p>
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
-        <a class="buttons next" href="#">></a>
-      </div>
+          </div>
+        </li>
+        <!-- Add other testimonials here -->
+      </ul>
     </div>
-    <script
-      src="https://code.jquery.com/jquery-2.2.4.min.js"
-      integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-      crossorigin="anonymous"
-    ></script>
-    <script>
-      var $carrd = $(".carrd");
-      var lastCard = $(".carrd-list .carrd").length - 1;
+  </div>
 
-      $(".next").click(function () {
-        var prependList = function () {
-          if ($(".carrd").hasClass("activeNow")) {
-            var $slicedCard = $(".carrd")
-              .slice(lastCard)
-              .removeClass("transformThis activeNow");
-            $("ul").prepend($slicedCard);
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      let isAnimating = false;
+      let animationQueue = [];
+
+      function processAnimationQueue() {
+        if (isAnimating || animationQueue.length === 0) return;
+        isAnimating = true;
+
+        const nextAnimation = animationQueue.shift();
+        nextAnimation();
+      }
+
+      $(".buttons").click(function (event) {
+        event.preventDefault();
+        const direction = $(this).hasClass("next") ? 1 : -1;
+
+        animationQueue.push(function () {
+          const cardStack = $(".card-stack");
+          const activeCard = $(".card-list .active");
+
+          cardStack.css({ transform: `translateX(${-100 * direction}%)` });
+          activeCard.removeClass("active");
+
+          if (direction === 1) {
+            const nextCard = activeCard.next(".carrd");
+            if (nextCard.length === 0) {
+              $(".carrd:first-child").addClass("active");
+            } else {
+              nextCard.addClass("active");
+            }
+          } else {
+            const prevCard = activeCard.prev(".carrd");
+            if (prevCard.length === 0) {
+              $(".carrd:last-child").addClass("active");
+            } else {
+              prevCard.addClass("active");
+            }
           }
-        };
-        $("li")
-          .last()
-          .removeClass("transformPrev")
-          .addClass("transformThis")
-          .prev()
-          .addClass("activeNow");
-        setTimeout(function () {
-          prependList();
-        }, 150);
-      });
 
-      $(".prev").click(function () {
-        var appendToList = function () {
-          if ($(".carrd").hasClass("activeNow")) {
-            var $slicedCard = $(".carrd").slice(0, 1).addClass("transformPrev");
-            $(".carrd-list").append($slicedCard);
-          }
-        };
+          isAnimating = false;
+          processAnimationQueue();
+        });
 
-        $("li")
-          .removeClass("transformPrev")
-          .last()
-          .addClass("activeNow")
-          .prevAll()
-          .removeClass("activeNow");
-        setTimeout(function () {
-          appendToList();
-        }, 150);
+        processAnimationQueue();
       });
-    </script>
-  </body>
+    });
+  </script>
+</body>
 </html>
